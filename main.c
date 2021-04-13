@@ -41,6 +41,7 @@ int main (int argc, char *argv[]) {
    free(numberString);
 
    fclose(inputFile);
+   fclose(outputFile);
    return 0;
 }
 
