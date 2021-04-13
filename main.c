@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "string.h"
 
-char * analize(char * inputNumber);
+void analizeAndSave(FILE * outputFile, char * numberString);
+char * analize(char * numberString);
 void append(char * s, char c);
 
 int main (int argc, char *argv[]) {
@@ -27,8 +28,7 @@ int main (int argc, char *argv[]) {
          break;
       }
       if (c == ',') {
-         char * result = analize(numberString);
-         fprintf(outputFile, "%s %s\n", numberString, result);
+         analizeAndSave(outputFile, numberString);
 
          numberString = realloc(numberString, 2);
          strcpy(numberString, "");
@@ -37,16 +37,19 @@ int main (int argc, char *argv[]) {
          append(numberString, c);
       }
    }
-   char * result = analize(numberString);
-   fprintf(outputFile, "%s %s\n", numberString, result);
+   analizeAndSave(outputFile, numberString);
    free(numberString);
-
 
    fclose(inputFile);
    return 0;
 }
 
-char * analize(char * inputNumber) {
+void analizeAndSave(FILE * outputFile, char * numberString) {
+   char * result = analize(numberString);
+   fprintf(outputFile, "%-15s %-15s\n", numberString, result);
+}
+
+char * analize(char * numberString) {
    return "NO DEFINIDO";
 }
 
